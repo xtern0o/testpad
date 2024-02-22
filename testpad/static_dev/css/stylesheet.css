@@ -4,6 +4,9 @@
 
     --h1-dark: #FFFFFF;
     --h1-light: #1E1E1E;
+
+    --nav-dark: #1E1E1E;
+    --nav-light: #FFFFFF;
 }
 
 html {
@@ -20,10 +23,18 @@ body {
 
 h1 {
     margin: 5px auto;
-    font-size: 36px;
+    font-size: 48px;
     text-align: center;
     color: var(--h1-light);
 }
 .dark h1 {
     color: var(--h1-dark);
+}
+
+nav {
+    background-color: var(--nav-light);
+    padding: 10px;
+}
+.dark nav {
+    background-color: var(--nav-dark);
 }
