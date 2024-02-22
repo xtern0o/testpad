@@ -31,14 +31,13 @@ EMAIL_FILE_PATH = BASE_DIR / "send_mail"
 
 INSTALLED_APPS = [
     "users.apps.UsersConfig",
-
+    "homepage.apps.HomepageConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "widget_tweaks",
@@ -118,7 +117,7 @@ LOCALE_PATHS = [
     BASE_DIR / "locale",
 ]
 
-TIME_ZONE = "UTC+3"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 

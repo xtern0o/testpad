@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>Хомпейдж)</h1>
+
+<script>
+    const body = document.querySelector("body");
+    body.addEventListener("keypress", (event) => {
+        if (event.keyCode == 49) {
+            body.classList.toggle("dark");
+        }
+    })
+</script>
+
+{% endblock %}

@@ -7,12 +7,6 @@ import sorl
 
 
 class CustomUser(django.contrib.auth.models.AbstractUser):
-    def get_avatar_path(self, filename):
-        return (
-            pathlib.Path("users") / f"avatar_user_{str(self.user.id)}"
-            f".{filename.split('.')[-1]}"
-        )
-
     class GenderChoices(django.db.models.TextChoices):
         MALE = ("M", "мужской")
         FEMALE = ("F", "женский")
@@ -42,6 +36,12 @@ class CustomUser(django.contrib.auth.models.AbstractUser):
         null=True,
         max_length=128,
     )
+
+    def get_avatar_path(self, filename):
+        return (
+            pathlib.Path("users") / f"avatar_user_{str(self.user.id)}"
+            f".{filename.split('.')[-1]}"
+        )
 
     def get_image_x300(self):
         return sorl.thumbnail.get_thumbnail(

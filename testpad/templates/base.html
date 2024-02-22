@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load i18n %}
+
+<html lang="{% translate 'LANG_CODE' %}">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image">
+
+    <title>{% block title %}{% endblock %}</title>
+
+  </head>
+
+  <body style="height: 100%" class="dark">
+
+    <header class="p-2 text-bg-dark">
+      {% include "includes/header.html" %}
+    </header>
+
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+
+    <footer style="flex: 0 0 auto">
+      {% include "includes/footer.html" %}
+    </footer>
+
+    
+
+  </body>
+</html>

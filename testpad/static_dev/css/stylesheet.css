@@ -1,0 +1,29 @@
+:root {
+    --bg-dark: #29292A;
+    --bg-light: #F6F6F6;
+
+    --h1-dark: #FFFFFF;
+    --h1-light: #1E1E1E;
+}
+
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+}
+.dark {
+    background-color: var(--bg-dark);
+}
+
+
+h1 {
+    margin: 5px auto;
+    font-size: 36px;
+    text-align: center;
+    color: var(--h1-light);
+}
+.dark h1 {
+    color: var(--h1-dark);
+}
