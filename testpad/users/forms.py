@@ -20,6 +20,6 @@ class SignUpForm(django.contrib.auth.forms.UserCreationForm):
                 "type": "date",
             },
         )
-    
+
     class Meta:
         model = users.models.CustomUser
