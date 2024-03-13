@@ -7,6 +7,11 @@
 
     --nav-dark: #1E1E1E;
     --nav-light: #FFFFFF;
+
+    --div-outline-border: #676767;
+
+    --div-outline-light: #FFFFFF;
+    --div-outline-dark: #1E1E1E;
 }
 
 html {
@@ -37,4 +42,17 @@ nav {
 }
 .dark nav {
     background-color: var(--nav-dark);
+}
+
+.div-outline {
+    margin: 5px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    border-width: 1px;
+    border: solid 1px var(--div-outline-border);;
+    
+    background-color: var(--h1-light);
+}
+.dark .div-outline {
+    background-color: var(--div-outline-dark);
 }

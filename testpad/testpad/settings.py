@@ -10,7 +10,7 @@ dotenv.main.load_dotenv()
 
 def load_bool_env(name, default):
     env_value = os.getenv(name, str(default)).lower()
-    return env_value in ("true", "yes", "t", "y", "1")
+    return env_value in ("true", "yes", "t", "y", "1", "да", "д")
 
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
