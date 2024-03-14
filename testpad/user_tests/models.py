@@ -4,6 +4,7 @@ import django.db.models
 import django.utils.timezone
 import sorl.thumbnail
 
+import core.models
 import users.models
 
 
@@ -16,6 +17,10 @@ class Category(django.db.models.Model):
     class Meta:
         verbose_name = "категория"
         verbose_name_plural = "категории"
+    
+
+    def __str__(self):
+        return self.name
 
 
 class Question(django.db.models.Model):
@@ -24,6 +29,7 @@ class Question(django.db.models.Model):
     )
 
     weight = django.db.models.IntegerField(
+        "вес",
         validators=[
             django.core.validators.MinValueValidator(0),
             django.core.validators.MaxValueValidator(5),
@@ -35,9 +41,50 @@ class Question(django.db.models.Model):
         help_text="информация о типе вопроса и правильном ответе по определенной структуре",
     )
 
+    def get_image_x300(self):
+        return sorl.thumbnail.get_thumbnail(
+            self.image,
+            "300x300",
+            crop="center",
+            quality=51,
+        )
+
+    def get_image_x50(self):
+        return sorl.thumbnail.get_thumbnail(
+            self.image,
+            "50x50",
+            crop="center",
+            quality=51,
+        )
+
+    def image_tmb(self):
+        if self.image:
+            return django.utils.safestring.mark_safe(
+                f'<img src="{self.get_image_x300().url}">',
+            )
+        return "изображения нет"
+    
+    def small_image_tmb(self):
+        if self.image:
+            return django.utils.safestring.mark_safe(
+                f'<img src="{self.get_image_x50().url}">',
+            )
+        return "изображения нет"
+    
+    image_tmb.short_description = "превью (300x300)"
+    image_tmb.allow_tags = True
+
+    small_image_tmb.short_description = "превью (50x50)"
+    small_image_tmb.allow_tags = True
+
     class Meta:
         verbose_name = "вопрос"
         verbose_name_plural = "вопросы"
+    
+    def __str__(self):
+        if len(self.text) < 30:
+            return self.text
+        return self.text[:30] + "..."
 
 
 class QuestionAnswer(django.db.models.Model):
@@ -87,14 +134,6 @@ class Test(django.db.models.Model):
         help_text="создатель теста",
         verbose_name="автор теста",
         related_name="author",
-    )
-
-    avatar = django.db.models.ImageField(
-        upload_to="user_tests/%Y/%m/%d/",
-        help_text="аватарка теста",
-        verbose_name="аватар",
-        null=True,
-        blank=True,
     )
 
     category = django.db.models.ForeignKey(
@@ -149,10 +188,51 @@ class Test(django.db.models.Model):
                 f'<img src="{self.get_image_x300().url}">',
             )
         return "изображения нет"
+    
+    def small_image_tmb(self):
+        if self.image:
+            return django.utils.safestring.mark_safe(
+                f'<img src="{self.get_image_x50().url}">',
+            )
+        return "изображения нет"
 
     def __str__(self):
         return f'Тест "{self.title}" от {self.created_on.strftime("%d.%m.%Y %H:%M")}'
+    
+    image_tmb.short_description = "превью (300x300)"
+    image_tmb.allow_tags = True
+
+    small_image_tmb.short_description = "превью (50x50)"
+    small_image_tmb.allow_tags = True
 
     class Meta:
         verbose_name = "тест"
         verbose_name_plural = "тесты"
+
+
+class Avatar(core.models.AbstractImage):
+    test = django.db.models.OneToOneField(
+        to=Test,
+        verbose_name="тест",
+        on_delete=django.db.models.deletion.CASCADE,
+        related_name="image",
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = "аватар"
+        verbose_name_plural = "аватары"
+
+
+class QuestionImage(core.models.AbstractImage):
+    question = django.db.models.OneToOneField(
+        to=Question,
+        verbose_name="вопрос",
+        on_delete=django.db.models.deletion.CASCADE,
+        related_name="image",
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = "картинка"
+        verbose_name_plural = "картинки"
