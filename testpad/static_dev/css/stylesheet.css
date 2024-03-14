@@ -9,29 +9,72 @@
     --nav-light: #FFFFFF;
 
     --div-outline-border: #676767;
+    --p-color: #e6e3e3;
 
     --div-outline-light: #FFFFFF;
     --div-outline-dark: #1E1E1E;
+
+    --navbar-text-dark: #CCC5B9;
+
+    
+    --font-family: "Roboto", sans-serif;
+    --second-family: "Arial Rounded MT Bold", sans-serif;
+    --third-family: "Inter", sans-serif;
 }
 
 html {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: var(--second-family);
 }
 
 body {
+    min-height: 100vh;
     background-color: var(--bg-light);
+    display: flex;
+    flex-direction: column;
 }
 .dark {
     background-color: var(--bg-dark);
 }
 
+main {
+    flex-grow: 1;
+}
 
 h1 {
     margin: 5px auto;
+    margin-top: 20px;
     font-size: 48px;
     text-align: center;
     color: var(--h1-light);
 }
+
+h2 {
+    margin: 5px auto;
+    margin-top: 20px;
+    font-size: 48px;
+    text-align: start;
+}
+
+h5 {
+    color: var(--h1-dark);
+}
+
+main p {
+    color: var(--navbar-text-dark);
+    margin: 5px auto;
+    font-size: 28px;
+    text-align: start;
+}
+
+p {
+    color: var(--navbar-text-dark);
+}
+
+.dark h2 {
+    color: var(--h1-dark);
+}
+
+
 .dark h1 {
     color: var(--h1-dark);
 }
@@ -55,4 +98,28 @@ nav {
 }
 .dark .div-outline {
     background-color: var(--div-outline-dark);
+}
+
+.custom-link {
+    color: var(--navbar-text-dark);
+}
+
+.custom-link:visited {
+    color: var(--navbar-text-dark);
+}
+
+.custom-link:hover {
+    color: var(--nav-light);
+    opacity: 5;
+}
+
+.profile-link {
+    width: 50px; 
+    display: inline-block;
+}
+
+.img-link {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
 }
