@@ -17,7 +17,7 @@ class Category(django.db.models.Model):
     class Meta:
         verbose_name = "категория"
         verbose_name_plural = "категории"
-    
+
 
     def __str__(self):
         return self.name
@@ -33,7 +33,7 @@ class Question(django.db.models.Model):
         validators=[
             django.core.validators.MinValueValidator(0),
             django.core.validators.MaxValueValidator(5),
-            ]
+        ]
     )
 
     json_body = django.db.models.JSONField(
