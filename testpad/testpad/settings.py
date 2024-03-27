@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "widget_tweaks",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -160,4 +161,10 @@ CKEDITOR_CONFIGS = {
             ],
         ],
     },
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ]
 }
