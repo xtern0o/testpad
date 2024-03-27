@@ -18,7 +18,6 @@ class Category(django.db.models.Model):
         verbose_name = "категория"
         verbose_name_plural = "категории"
 
-
     def __str__(self):
         return self.name
 
@@ -33,7 +32,7 @@ class Question(django.db.models.Model):
         validators=[
             django.core.validators.MinValueValidator(0),
             django.core.validators.MaxValueValidator(5),
-        ]
+        ],
     )
 
     json_body = django.db.models.JSONField(
@@ -63,14 +62,14 @@ class Question(django.db.models.Model):
                 f'<img src="{self.get_image_x300().url}">',
             )
         return "изображения нет"
-    
+
     def small_image_tmb(self):
         if self.image:
             return django.utils.safestring.mark_safe(
                 f'<img src="{self.get_image_x50().url}">',
             )
         return "изображения нет"
-    
+
     image_tmb.short_description = "превью (300x300)"
     image_tmb.allow_tags = True
 
@@ -80,7 +79,7 @@ class Question(django.db.models.Model):
     class Meta:
         verbose_name = "вопрос"
         verbose_name_plural = "вопросы"
-    
+
     def __str__(self):
         if len(self.text) < 30:
             return self.text
@@ -188,7 +187,7 @@ class Test(django.db.models.Model):
                 f'<img src="{self.get_image_x300().url}">',
             )
         return "изображения нет"
-    
+
     def small_image_tmb(self):
         if self.image:
             return django.utils.safestring.mark_safe(
@@ -198,7 +197,7 @@ class Test(django.db.models.Model):
 
     def __str__(self):
         return f'Тест "{self.title}" от {self.created_on.strftime("%d.%m.%Y %H:%M")}'
-    
+
     image_tmb.short_description = "превью (300x300)"
     image_tmb.allow_tags = True
 

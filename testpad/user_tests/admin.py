@@ -5,7 +5,7 @@ import user_tests.models
 
 class AvatarInline(django.contrib.admin.TabularInline):
     model = user_tests.models.Avatar
-    
+
     fields = [
         "small_image_preview",
         "image",
@@ -17,7 +17,7 @@ class AvatarInline(django.contrib.admin.TabularInline):
 
     def small_image_preview(self, obj):
         return obj.small_image_tmb()
-    
+
     small_image_preview.short_description = "Превью 50x50"
     small_image_preview.allow_tags = True
 
@@ -29,14 +29,14 @@ class QuestionImageInline(django.contrib.admin.TabularInline):
         "small_image_preview",
         "image",
     ]
-    
+
     readonly_fields = [
         "small_image_preview",
     ]
 
     def small_image_preview(self, obj):
         return obj.small_image_tmb()
-    
+
     small_image_preview.short_description = "Превью 50x50"
     small_image_preview.allow_tags = True
 
@@ -99,7 +99,3 @@ class TestAdmin(django.contrib.admin.ModelAdmin):
         obj.author = request.user
         obj.save()
         super().save_model(request, obj, form, change)
-
-
-
-    
