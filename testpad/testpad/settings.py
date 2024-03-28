@@ -30,15 +30,18 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "send_mail"
 
 INSTALLED_APPS = [
-    "users.apps.UsersConfig",
-    "homepage.apps.HomepageConfig",
-    "user_tests.apps.UserTestsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "api.apps.ApiConfig",
+    "users.apps.UsersConfig",
+    "homepage.apps.HomepageConfig",
+    "user_tests.apps.UserTestsConfig",
+
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "widget_tweaks",
