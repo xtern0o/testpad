@@ -36,10 +36,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "api.apps.ApiConfig",
     "users.apps.UsersConfig",
     "homepage.apps.HomepageConfig",
     "user_tests.apps.UserTestsConfig",
+
+    "drf_yasg",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
     "widget_tweaks",

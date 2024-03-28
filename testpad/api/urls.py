@@ -1,5 +1,7 @@
+import django.urls
 import rest_framework.routers
 
+import api.swagger
 import api.views
 
 
@@ -33,6 +35,12 @@ router.register(
 )
 
 
-urlpatterns = []
+urlpatterns = [
+    django.urls.path(
+        "swagger/",
+        api.swagger.schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    )
+]
 
 urlpatterns.extend(router.urls)
