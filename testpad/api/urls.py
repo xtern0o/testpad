@@ -26,6 +26,12 @@ router.register(
     api.views.TestViewSet,
     basename="tests",
 )
+router.register(
+    "users",
+    api.views.UserViewSet,
+    basename="users",
+)
+
 
 urlpatterns = []
 

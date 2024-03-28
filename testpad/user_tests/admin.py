@@ -4,7 +4,7 @@ import user_tests.models
 
 
 class AvatarInline(django.contrib.admin.TabularInline):
-    model = user_tests.models.Avatar
+    model = user_tests.models.TestAvatar
 
     fields = [
         "small_image_preview",

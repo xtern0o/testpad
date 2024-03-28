@@ -152,7 +152,7 @@ class Test(django.db.models.Model):
     )
 
     deadline_open = django.db.models.DateTimeField(
-        default=django.utils.timezone.now(),
+        default=django.utils.timezone.now,
     )
 
     deadline_close = django.db.models.DateTimeField(
@@ -164,6 +164,8 @@ class Test(django.db.models.Model):
         to=Question,
         verbose_name="вопросы",
         help_text="список вопросов в этом тесте",
+        related_name="test",
+        related_query_name="test",
     )
 
     def get_image_x300(self):
@@ -210,7 +212,7 @@ class Test(django.db.models.Model):
         verbose_name_plural = "тесты"
 
 
-class Avatar(core.models.AbstractImage):
+class TestAvatar(core.models.AbstractImage):
     test = django.db.models.OneToOneField(
         to=Test,
         verbose_name="тест",
