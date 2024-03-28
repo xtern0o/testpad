@@ -1,13 +1,33 @@
 import rest_framework.serializers
 
-import users.serializers
 import user_tests.models
+import users.serializers
 
 
 class CategorySerializer(rest_framework.serializers.ModelSerializer):
     class Meta:
         model = user_tests.models.Category
         fields = "__all__"
+
+
+class QuestionImageShortSerializer(
+    rest_framework.serializers.ModelSerializer,
+):
+    class Meta:
+        model = user_tests.models.QuestionImage
+        fields = [
+            user_tests.models.QuestionImage.image.field.name,
+        ]
+
+
+class TestAvatarShortSerializer(
+    rest_framework.serializers.ModelSerializer,
+):
+    class Meta:
+        model = user_tests.models.Avatar
+        fields = [
+            user_tests.models.Avatar.image.field.name,
+        ]
 
 
 class QuestionImageSerializer(rest_framework.serializers.ModelSerializer):
@@ -17,7 +37,7 @@ class QuestionImageSerializer(rest_framework.serializers.ModelSerializer):
 
 
 class QuestionSerializer(rest_framework.serializers.ModelSerializer):
-    image = QuestionImageSerializer()
+    image = QuestionImageShortSerializer()
 
     class Meta:
         model = user_tests.models.Question
@@ -40,7 +60,7 @@ class TestAvatarSerializer(rest_framework.serializers.ModelSerializer):
 
 
 class TestSerializer(rest_framework.serializers.ModelSerializer):
-    image = TestAvatarSerializer()
+    image = TestAvatarShortSerializer()
     questions = QuestionSerializer(many=True)
     author = users.serializers.CustomUserSerializer()
 

@@ -5,7 +5,6 @@ import django.utils.timezone
 import sorl.thumbnail
 
 import core.models
-import users.models
 
 
 class Category(django.db.models.Model):
@@ -37,7 +36,8 @@ class Question(django.db.models.Model):
 
     json_body = django.db.models.JSONField(
         "техническая характеристика вопроса",
-        help_text="информация о типе вопроса и правильном ответе по определенной структуре",
+        help_text="информация о типе вопроса и правильном ответе"
+        " по определенной структуре",
     )
 
     def get_image_x300(self):
@@ -107,7 +107,8 @@ class QuestionAnswer(django.db.models.Model):
 
     is_correct = django.db.models.BooleanField(
         "правильность ответа",
-        help_text="меняет значение в зависимости от правильности введенных данных",
+        help_text="меняет значение в зависимости от правильности"
+        " введенных данных",
     )
 
     class Meta:
@@ -196,7 +197,7 @@ class Test(django.db.models.Model):
         return "изображения нет"
 
     def __str__(self):
-        return f'Тест "{self.title}" от {self.created_on.strftime("%d.%m.%Y %H:%M")}'
+        return f'Тест "{self.title}" от {self.created_on.strftime("%d.%m.%Y %H:%M")}'  # noqa
 
     image_tmb.short_description = "превью (300x300)"
     image_tmb.allow_tags = True

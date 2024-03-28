@@ -10,7 +10,7 @@ urlpatterns = [
         django.urls.include("api.urls"),
     ),
     django.urls.path(
-        "tests/", 
+        "tests/",
         django.urls.include("user_tests.urls"),
     ),
     django.urls.path(

@@ -1,4 +1,3 @@
-import django.urls
 import rest_framework.routers
 
 import api.views

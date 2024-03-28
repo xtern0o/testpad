@@ -1,10 +1,9 @@
-import django.shortcuts
-import rest_framework.viewsets
 import rest_framework.response
 import rest_framework.status
+import rest_framework.viewsets
 
-import user_tests.models
 import api.serializers
+import user_tests.models
 
 
 class CategoryViewSet(rest_framework.viewsets.ModelViewSet):
