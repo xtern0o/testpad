@@ -14,9 +14,17 @@ urlpatterns = [
         django.urls.include("user_tests.urls"),
     ),
     django.urls.path(
+        "users/",
+        django.urls.include("users.urls"),
+    ),
+    django.urls.path(
+        "auth/",
+        django.urls.include("django.contrib.auth.urls"),
+    ),
+    django.urls.path(
         "",
         django.urls.include("homepage.urls"),
-    ),
+    ),   
 ]
 
 urlpatterns += django.conf.urls.static.static(

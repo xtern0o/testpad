@@ -23,3 +23,13 @@ class SignUpForm(django.contrib.auth.forms.UserCreationForm):
 
     class Meta:
         model = users.models.CustomUser
+        fields = [
+            users.models.CustomUser.username.field.name,
+            users.models.CustomUser.email.field.name,
+            users.models.CustomUser.first_name.field.name,
+            users.models.CustomUser.last_name.field.name,
+            users.models.CustomUser.middle_name.field.name,
+            users.models.CustomUser.gender.field.name,
+            users.models.CustomUser.birthday.field.name,
+        ]
+

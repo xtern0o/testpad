@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load static widget_tweaks %}
+
+{% block title %}
+Авторизация
+{% endblock %}
+
+{% block content %}
+
+<h1 class="fs-2 fw-bold text-center">Авторизация пользователя</h1>
+
+{% include "includes/form.html" with submit_value="Войти" %}
+
+{% endblock %}

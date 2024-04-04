@@ -174,3 +174,5 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
     ]
 }
+
+LINK_EXPIRATION = int(os.getenv("LINK_EXPIRATION"))
