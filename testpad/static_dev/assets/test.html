@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <title>ТЕСТ</title>
+  </head>
+  <body>
+    <main class="test-main">
+      <section class="test-controls">
+        <h1 class="test-title">тест: 51 сорт жирного жира и другие подовые</h1>
+        <span class="timer">15:00</span>
+        <a href="#" class="music-player button control-button">музыка</a>
+        <a href="" class="theme-change button control-button">тема</a>
+        <a href="#" class="pass-test-link button blue-button">сдать тест</a
+        ><a href="#" class="exit-test-link button red-button">покинуть тест</a>
+      </section>
+      <div class="test-container">
+        <section class="test-nav">
+          <a href="#" class="test-nav-link active-link" data-id="0"></a>
+          <a href="#" class="test-nav-link" data-id="1"></a>
+          <a href="#" class="test-nav-link" data-id="2"></a>
+          <a href="#" class="test-nav-link" data-id="3"></a>
+          <a href="#" class="test-nav-link" data-id="4"></a>
+          <a href="#" class="test-nav-link" data-id="5"></a>
+          <a href="#" class="test-nav-link" data-id="6"></a>
+          <a href="#" class="test-nav-link" data-id="7"></a>
+          <a href="#" class="test-nav-link" data-id="8"></a>
+          <a href="#" class="test-nav-link" data-id="9"></a>
+          <a href="#" class="test-nav-link" data-id="10"></a>
+          <a href="#" class="test-nav-link" data-id="11"></a>
+          <a href="#" class="test-nav-link" data-id="12"></a>
+          <a href="#" class="test-nav-link" data-id="13"></a>
+          <a href="#" class="test-nav-link" data-id="14"></a>
+          <a href="#" class="test-nav-link" data-id="15"></a>
+          <a href="#" class="test-nav-link" data-id="16"></a>
+          <a href="#" class="test-nav-link" data-id="17"></a>
+          <a href="#" class="test-nav-link" data-id="18"></a>
+          <a href="#" class="test-nav-link" data-id="19"></a>
+          <a href="#" class="test-nav-link" data-id="20"></a>
+          <a href="#" class="test-nav-link" data-id="21"></a>
+          <a href="#" class="test-nav-link" data-id="22"></a>
+          <a href="#" class="test-nav-link" data-id="23"></a>
+          <a href="#" class="test-nav-link" data-id="24"></a>
+          <a href="#" class="test-nav-link" data-id="25"></a>
+          <a href="#" class="test-nav-link" data-id="26"></a>
+          <a href="#" class="test-nav-link" data-id="27"></a>
+          <a href="#" class="test-nav-link" data-id="28"></a>
+          <a href="#" class="test-nav-link" data-id="29"></a>
+          <a href="#" class="test-nav-link test-link-success test-link-wrong" data-id="30"></a>
+        </section>
+
+        <section class="test-body">
+          <div class="test-question" data-id="0" data-type="line-edit">
+            <h2 class="question-title">Пример вопроса с текстом и вводом ответа:</h2>
+            <input class="question-input-text" type="text" placeholder="введите свой ответ" />
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="1" data-type="line-edit-image">
+            <img class="question-image" src="../img/istockphoto-1361394182-612x612.jpg" alt="question image" />
+            <h2 class="question-title">Пример вопроса с картинкой и текстом и вводом ответа:</h2>
+            <input class="question-input-text" type="text" placeholder="введите свой ответ" />
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="2" data-type="checkbox">
+            <h2 class="question-title">Пример вопроса с текстом и выбором нескольких вариантов:</h2>
+            <div class="checkbox-question-container">
+              <label>
+                <input type="checkbox" checked />
+                <span>Checkbox #1</span>
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                <span>Checkbox #2</span>
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                <span>Checkbox #3</span>
+              </label>
+
+              <label>
+                <input type="checkbox" checked />
+                <span>Checkbox #4</span>
+              </label>
+              <label>
+                <input type="checkbox" checked />
+                <span>Checkbox #5</span>
+              </label>
+            </div>
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="3" data-type="checkbox-image">
+            <img class="question-image" src="../img/ppe200.jpg" alt="question image" />
+            <h2 class="question-title">Пример вопроса с картинкой и текстом и выбором нескольких вариантов:</h2>
+            <div class="checkbox-question-container">
+              <label>
+                <input type="checkbox" checked />
+                <span>Checkbox #1</span>
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                <span>Checkbox #2</span>
+              </label>
+
+              <label>
+                <input type="checkbox" />
+                <span>Checkbox #3</span>
+              </label>
+
+              <label>
+                <input type="checkbox" checked />
+                <span>Checkbox #4</span>
+              </label>
+              <label>
+                <input type="checkbox" checked />
+                <span>Checkbox #5</span>
+              </label>
+            </div>
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="4" data-type="radio">
+            <h2 class="question-title">Пример вопроса с текстом и выбором одного варианта:</h2>
+            <div class="radio-question-container">
+              <label>
+                <input type="radio" name="radio1" checked />
+                <span>radiobutton #1</span>
+              </label>
+
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #2</span>
+              </label>
+
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #3</span>
+              </label>
+
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #4</span>
+              </label>
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #5</span>
+              </label>
+            </div>
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="5" data-type="radio-image">
+            <img class="question-image" src="../img/ppe200.jpg" alt="question image" />
+            <h2 class="question-title">Пример вопроса с картинкой и текстом и выбором одного варианта:</h2>
+            <div class="radio-question-container">
+              <label>
+                <input type="radio" name="radio1" checked />
+                <span>radiobutton #1</span>
+              </label>
+
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #2</span>
+              </label>
+
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #3</span>
+              </label>
+
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #4</span>
+              </label>
+              <label>
+                <input type="radio" name="radio1" />
+                <span>radiobutton #5</span>
+              </label>
+            </div>
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="6" data-type="sorted">
+            <h2 class="question-title">Пример вопроса с текстом и сортировкой вариантов:</h2>
+
+            <ul class="sortable-container">
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+              <li>Item 4</li>
+              <li>Item 5</li>
+            </ul>
+
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="7" data-type="sorted-image">
+            <img class="question-image" src="../img/istockphoto-1361394182-612x612.jpg" alt="question image" />
+            <h2 class="question-title">Пример вопроса с картинкой и текстом и сортировкой вариантов:</h2>
+            <ul class="sortable-container">
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+              <li>Item 4</li>
+              <li>Item 5</li>
+            </ul>
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="8" data-type="relations">
+            <h2 class="question-title">Пример вопроса с текстом и расстановкой связей:</h2>
+            <div class="relations-question-container">
+              <ul class="relations-fixed-elements">
+                <li>отношение 1</li>
+                <li>отношение 2</li>
+                <li>отношение 3</li>
+                <li>отношение 4</li>
+                <li>отношение 5</li>
+              </ul>
+              <ul class="relations-drag-elements">
+                <li>относится к 1</li>
+                <li>относится к 2</li>
+                <li>относится к 3</li>
+                <li>относится к 4</li>
+                <li>относится к 5</li>
+              </ul>
+            </div>
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+
+          <div class="test-question" data-id="9" data-type="relations-image">
+            <img class="question-image" src="../img/istockphoto-1361394182-612x612.jpg" alt="question image" />
+            <h2 class="question-title">Пример вопроса с картинкой и текстом и расстановкой связей:</h2>
+            <div class="relations-question-container">
+              <ul class="relations-fixed-elements">
+                <li>отношение 1</li>
+                <li>отношение 2</li>
+                <li>отношение 3</li>
+                <li>отношение 4</li>
+                <li>отношение 5</li>
+              </ul>
+              <ul class="relations-drag-elements">
+                <li>относится к 1</li>
+                <li>относится к 2</li>
+                <li>относится к 3</li>
+                <li>относится к 4</li>
+                <li>относится к 5</li>
+              </ul>
+            </div>
+            <button class="button green-button next-question-button">ответить</button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

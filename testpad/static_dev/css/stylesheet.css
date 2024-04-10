@@ -55,6 +55,10 @@ h2 {
     text-align: start;
 }
 
+h4 {
+    color: var(--h1-light);
+}
+
 h5 {
     color: var(--h1-dark);
 }
@@ -123,3 +127,32 @@ nav {
     height: 100%;
     width: 100%;
 }
+
+.cards {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding-top: 5rem;
+}
+
+.cards > div {
+    width: 20rem;
+    height: 30rem;
+    background-color: var(--div-outline-border);
+}
+
+.cards > div > img {
+    width: 20rem;
+    height: 20rem;
+}
+
+.card-btn {
+    background-color: var(--div-outline-dark);
+    color: var(--h1-dark);
+}
+
+.card-btn:hover {
+    background-color: var(--nav-light);
+    opacity: 5;
+}
+

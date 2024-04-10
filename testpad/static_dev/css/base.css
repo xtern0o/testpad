@@ -1,0 +1,26 @@
+:root {
+  --dark-bg: #1e1e1e;
+  --dark-bg-lighten: #29292a;
+  --dark-link: #e7e3dc;
+  --dark-text: #fafafa;
+  --dark-red-btn:#bb201e;
+  --dark-blue-btn:#305cbb;
+  --dark-green-btn:#64a52f;
+  --dark-focus-outline: #EB5E28;
+  --font-family: "Alumni Sans", sans-serif;
+  --border-radius: 4px;
+  --screen-pixel: calc(1vw + 1vh);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--font-family);
+    font-size: 10px;
+}

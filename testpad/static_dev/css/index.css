@@ -1,0 +1,386 @@
+* {
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #222222;
+    --text-color: #ffffff;
+    --accent-color: #00a7ff;
+  }
+} */
+body.light-theme {
+  --dark-bg: #fafafa;
+  --dark-bg-lighten: #e7e3dc;
+  --dark-link: #29292a;
+  --dark-text: #1e1e1e;
+}
+
+.test-main {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark-bg);
+  padding: 1rem;
+}
+
+.test-controls {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-bottom: 1rem;
+  height: 5rem;
+}
+
+.test-container {
+  flex-grow: 1;
+  display: flex;
+  border-radius: var(--border-radius);
+  height: calc(100vh - 7rem);
+}
+
+.test-nav {
+  padding: 1rem 1rem 1rem 1rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* scroll styles */
+/* Works on Firefox */
+.test-nav {
+  margin-right: 0.5rem;
+  scrollbar-width: 0.8rem;
+  scrollbar-color: var(--dark-focus-outline);
+}
+
+/* Works on Chrome, Edge, and Safari */
+.test-nav::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+.test-nav::-webkit-scrollbar-track {
+  background-color: var(--dark-bg);
+}
+
+.test-nav::-webkit-scrollbar-thumb {
+  background-color: var(--dark-focus-outline);
+  border-radius: var(--border-radius);
+}
+
+/* end scroll styles */
+
+.timer {
+  color: var(--dark-text);
+  font-size: 3rem;
+  margin-right: 2rem;
+}
+
+.music-player,
+.theme-change,
+.pass-test-link {
+  margin-right: 1rem;
+}
+
+.music-player,
+.theme-change {
+  position: relative;
+  padding-left: 4rem;
+}
+
+.music-player::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  background-image: url("../img/music.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  left: 0.5rem;
+  top: 0.75rem;
+}
+
+body.light-theme .music-player::before {
+  background-image: url("../img/music-dark.png");
+}
+.theme-change::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  background-image: url("../img/theme.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  left: 0.5rem;
+  top: 0.75rem;
+}
+
+body.light-theme .theme-change::before {
+  background-image: url("../img/theme-dark.png") !important;
+}
+
+.test-nav-link {
+  display: block;
+  width: calc(var(--screen-pixel) * 1.4);
+  height: calc(var(--screen-pixel) * 1.4);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--dark-text);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.test-link-good {
+  background: url("../img/check.png") var(--dark-green-btn);
+  border-color: var(--dark-green-btn);
+}
+
+.test-link-wrong {
+  background: url("../img/close.png") var(--dark-red-btn);
+  border-color: var(--dark-red-btn);
+}
+
+.test-link-success {
+  background-size: 60% 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.test-nav-link:hover {
+  border-color: var(--dark-focus-outline);
+}
+
+.test-link-good:hover {
+  border-color: var(--dark-text);
+}
+
+.test-link-wrong:hover {
+  border-color: var(--dark-text);
+}
+
+.active-link {
+  background-color: var(--dark-text);
+}
+
+.test-title {
+  flex-grow: 1;
+  color: var(--dark-text);
+  padding-top: 1.2rem;
+  font-size: 3.2rem;
+  text-transform: uppercase;
+  font-family: var(--font-family);
+  user-select: none;
+}
+
+.test-body {
+  background-color: var(--dark-bg-lighten);
+  flex-grow: 1;
+  border-radius: var(--border-radius);
+}
+.test-question {
+  padding: 2rem;
+  color: var(--dark-text);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div[data-type="line-edit"] {
+}
+div[data-type="line-edit-image"] {
+}
+
+div[data-type="line-edit"] > input,
+div[data-type="line-edit-image"] > input {
+  background-color: var(--dark-text);
+  color: var(--dark-bg-lighten);
+  font-size: 2rem;
+  outline: none;
+  text-transform: uppercase;
+  padding: 1rem;
+  border: none;
+  width: clamp(300px, 80%, 600px);
+  border-radius: var(--border-radius);
+}
+
+div[data-type="checkbox"] {
+}
+
+div[data-type="checkbox-image"] {
+}
+
+.checkbox-question-container,
+.radio-question-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+/* checkbox styles */
+.checkbox-question-container label,
+.radio-question-container label {
+  width: 50%;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 2rem;
+
+  text-align: center;
+}
+.checkbox-question-container label input[type="checkbox"],
+.radio-question-container label input[type="radio"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+.checkbox-question-container label span,
+.radio-question-container label span {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkbox-question-container label span:before,
+.radio-question-container label span:before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  transition: background 0.3s ease;
+  background-color: var(--dark-text);
+  border-radius: var(--border-radius);
+  margin-right: 1rem;
+}
+
+.radio-question-container label span:before {
+  border-radius: 50%;
+}
+
+/* Checked */
+.checkbox-question-container label input[type="checkbox"]:checked + span:before,
+.radio-question-container label input[type="radio"]:checked + span:before {
+  background-color: var(--dark-focus-outline);
+}
+
+/* Focus */
+/* .focused span:before {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+} */
+
+/* Hover */
+.checkbox-question-container label span:hover:before,
+.radio-question-container label span:hover:before {
+  filter: brightness(110%);
+}
+
+/* Active */
+.checkbox-question-container label span:active:before,
+.radio-question-container label span:active:before {
+  filter: brightness(80%);
+}
+
+/* Disabled */
+.checkbox-question-container label input[type="checkbox"]:disabled + span,
+.radio-question-container label input[type="radio"]:disabled + span {
+  color: var(--dark-bg-lighten);
+  cursor: default;
+}
+.checkbox-question-container label input[type="checkbox"]:disabled + span:before,
+.radio-question-container label input[type="radio"]:disabled + span:before {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+/* end checkbox styles */
+
+div[data-type="radio"] {
+}
+
+div[data-type="radio-image"] {
+}
+
+div[data-type="sorted"] {
+}
+
+div[data-type="sorted-image"] {
+}
+
+div[data-type="relations"] {
+}
+
+div[data-type="relations-image"] {
+}
+
+.question-input-text {
+}
+
+.question-line-edit-image {
+}
+
+.question-title {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  font-family: var(--font-family);
+}
+
+.next-question-button {
+  margin-top: 3rem;
+}
+.question-image {
+  object-fit: cover;
+  width: 60%;
+  height: 46%;
+  box-shadow: 1px 1px 3px var(--dark-focus-outline);
+  border-radius: var(--border-radius);
+  margin-bottom: 3rem;
+}
+
+.question-hide {
+  display: none;
+}
+
+.sortable-container {
+  list-style: none;
+  margin: 0;
+  width: 50%;
+}
+.relations-fixed-elements li,
+.relations-drag-elements li,
+.sortable-container li {
+  transition: none;
+  font-size: 2rem;
+  color: var(--dark-text);
+  border: 1px solid var(--dark-text);
+  padding: 0.5rem 2rem;
+  width: 100%;
+}
+
+.relations-question-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 60%;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.relations-fixed-elements, .relations-drag-elements {
+  width: 49%;
+  list-style: none;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
