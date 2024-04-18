@@ -82,10 +82,6 @@ class TestAdmin(django.contrib.admin.ModelAdmin):
         user_tests.models.Test.small_image_tmb,
     ]
 
-    filter_horizontal = [
-        user_tests.models.Test.questions.field.name,
-    ]
-
     readonly_fields = [
         user_tests.models.Test.created_on.field.name,
         user_tests.models.Test.author.field.name,

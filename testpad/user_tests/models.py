@@ -5,9 +5,12 @@ import django.utils.timezone
 import sorl.thumbnail
 
 import core.models
+import user_tests.managers
 
 
 class Category(django.db.models.Model):
+    objects = user_tests.managers.CategoryManager()
+
     name = django.db.models.CharField(
         "название категории",
         max_length=128,
@@ -21,7 +24,97 @@ class Category(django.db.models.Model):
         return self.name
 
 
+class Test(django.db.models.Model):
+    title = django.db.models.CharField(
+        "название теста",
+        help_text="название теста",
+        max_length=128,
+    )
+
+    description = django.db.models.TextField(
+        "описание теста",
+        help_text="краткая информация о тесте (опционально)",
+    )
+
+    author = django.db.models.ForeignKey(
+        to=django.conf.settings.AUTH_USER_MODEL,
+        on_delete=django.db.models.deletion.CASCADE,
+        help_text="создатель теста",
+        verbose_name="автор теста",
+        related_name="author",
+    )
+
+    category = django.db.models.ForeignKey(
+        to=Category,
+        null=False,
+        on_delete=django.db.models.deletion.CASCADE,
+        help_text="категория этого теста (может быть только одна!)",
+        verbose_name="категория",
+        related_name="category",
+    )
+
+    created_on = django.db.models.DateTimeField(
+        auto_now_add=True,
+        help_text="время создания теста",
+        verbose_name="время создания теста",
+    )
+
+    deadline_open = django.db.models.DateTimeField(
+        default=django.utils.timezone.now,
+    )
+
+    deadline_close = django.db.models.DateTimeField(
+        blank=True,
+        null=True,
+    )
+
+    def get_image_x300(self):
+        return sorl.thumbnail.get_thumbnail(
+            self.image,
+            "300x300",
+            crop="center",
+            quality=51,
+        )
+
+    def get_image_x50(self):
+        return sorl.thumbnail.get_thumbnail(
+            self.image,
+            "50x50",
+            crop="center",
+            quality=51,
+        )
+
+    def image_tmb(self):
+        if self.image:
+            return django.utils.safestring.mark_safe(
+                f'<img src="{self.get_image_x300().url}">',
+            )
+        return "изображения нет"
+
+    def small_image_tmb(self):
+        if self.image:
+            return django.utils.safestring.mark_safe(
+                f'<img src="{self.get_image_x50().url}">',
+            )
+        return "изображения нет"
+
+    def __str__(self):
+        return f'Тест "{self.title}" от {self.created_on.strftime("%d.%m.%Y %H:%M")}'  # noqa
+
+    image_tmb.short_description = "превью (300x300)"
+    image_tmb.allow_tags = True
+
+    small_image_tmb.short_description = "превью (50x50)"
+    small_image_tmb.allow_tags = True
+
+    class Meta:
+        verbose_name = "тест"
+        verbose_name_plural = "тесты"
+
+
 class Question(django.db.models.Model):
+    objects = user_tests.managers.QuestionManager()
+
     text = django.db.models.TextField(
         "условие вопроса",
     )
@@ -38,6 +131,14 @@ class Question(django.db.models.Model):
         "техническая характеристика вопроса",
         help_text="информация о типе вопроса и правильном ответе"
         " по определенной структуре",
+    )
+
+    test = django.db.models.ForeignKey(
+        to=Test,
+        on_delete=django.db.models.deletion.CASCADE,
+        related_name="test",
+        verbose_name="тест",
+        help_text="тест, к которому относится этот вопрос",
     )
 
     def get_image_x300(self):
@@ -87,6 +188,8 @@ class Question(django.db.models.Model):
 
 
 class QuestionAnswer(django.db.models.Model):
+    objects = user_tests.managers.QuestionAnswerManager()
+
     user = django.db.models.ForeignKey(
         to=django.conf.settings.AUTH_USER_MODEL,
         on_delete=django.db.models.deletion.CASCADE,
@@ -114,102 +217,6 @@ class QuestionAnswer(django.db.models.Model):
     class Meta:
         verbose_name = "ответ"
         verbose_name_plural = "ответы"
-
-
-class Test(django.db.models.Model):
-    title = django.db.models.CharField(
-        "название теста",
-        help_text="название теста",
-        max_length=128,
-    )
-
-    description = django.db.models.TextField(
-        "описание теста",
-        help_text="краткая информация о тесте (опционально)",
-    )
-
-    author = django.db.models.ForeignKey(
-        to=django.conf.settings.AUTH_USER_MODEL,
-        on_delete=django.db.models.deletion.CASCADE,
-        help_text="создатель теста",
-        verbose_name="автор теста",
-        related_name="author",
-    )
-
-    category = django.db.models.ForeignKey(
-        to=Category,
-        null=False,
-        on_delete=django.db.models.deletion.CASCADE,
-        help_text="категория этого теста (может быть только одна!)",
-        verbose_name="категория",
-        related_name="category",
-    )
-
-    created_on = django.db.models.DateTimeField(
-        auto_now_add=True,
-        help_text="время создания теста",
-        verbose_name="время создания теста",
-    )
-
-    deadline_open = django.db.models.DateTimeField(
-        default=django.utils.timezone.now,
-    )
-
-    deadline_close = django.db.models.DateTimeField(
-        blank=True,
-        null=True,
-    )
-
-    questions = django.db.models.ManyToManyField(
-        to=Question,
-        verbose_name="вопросы",
-        help_text="список вопросов в этом тесте",
-        related_name="test",
-        related_query_name="test",
-    )
-
-    def get_image_x300(self):
-        return sorl.thumbnail.get_thumbnail(
-            self.image,
-            "300x300",
-            crop="center",
-            quality=51,
-        )
-
-    def get_image_x50(self):
-        return sorl.thumbnail.get_thumbnail(
-            self.image,
-            "50x50",
-            crop="center",
-            quality=51,
-        )
-
-    def image_tmb(self):
-        if self.image:
-            return django.utils.safestring.mark_safe(
-                f'<img src="{self.get_image_x300().url}">',
-            )
-        return "изображения нет"
-
-    def small_image_tmb(self):
-        if self.image:
-            return django.utils.safestring.mark_safe(
-                f'<img src="{self.get_image_x50().url}">',
-            )
-        return "изображения нет"
-
-    def __str__(self):
-        return f'Тест "{self.title}" от {self.created_on.strftime("%d.%m.%Y %H:%M")}'  # noqa
-
-    image_tmb.short_description = "превью (300x300)"
-    image_tmb.allow_tags = True
-
-    small_image_tmb.short_description = "превью (50x50)"
-    small_image_tmb.allow_tags = True
-
-    class Meta:
-        verbose_name = "тест"
-        verbose_name_plural = "тесты"
 
 
 class TestAvatar(core.models.AbstractImage):
