@@ -29,6 +29,7 @@ jobs:
         pip install -r requirements/test.txt
     - name: Run Tests
       run: |
+        cd testpad
         python manage.py test
     - name: flake8-linting
       run: |
