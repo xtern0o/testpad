@@ -173,6 +173,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-LINK_EXPIRATION = int(os.getenv("LINK_EXPIRATION"))
-if LINK_EXPIRATION is None:
+if os.getenv("LINK_EXPIRATION") is None:
     LINK_EXPIRATION = 12
+else:
+    LINK_EXPIRATION = int(os.getenv("LINK_EXPIRATION"))
