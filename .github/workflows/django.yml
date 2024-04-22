@@ -33,7 +33,7 @@ jobs:
         python manage.py test
     - name: flake8-linting
       run: |
-        flake8 --verbose --exclude=migrations
+        flake8 --verbose --exclude=migrations --config "setup.cfg"
     - name: black-linting
       run: |
         black --check --verbose --config pyproject.toml .
