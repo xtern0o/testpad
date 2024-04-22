@@ -1,5 +1,3 @@
-import datetime
-
 import django.conf
 import django.contrib.auth
 import django.contrib.auth.decorators
@@ -11,10 +9,9 @@ import django.shortcuts
 import django.urls
 import django.utils.timezone
 import django.views.generic
-import jwt
 
-import users.models
 import users.forms
+import users.models
 
 
 class SignupFormView(django.views.generic.FormView):
@@ -28,23 +25,23 @@ class SignupFormView(django.views.generic.FormView):
         if django.conf.settings.DEFAULT_USER_IS_ACTIVE:
             user.is_active = True
             user.save()
-        
-        expiration = django.utils.timezone.now() + datetime.timedelta(
-            hours=django.conf.settings.LINK_EXPIRATION,
-        )
 
-        exp_timestamp = int(expiration.timestamp())
+        # expiration = django.utils.timezone.now() + datetime.timedelta(
+        #     hours=django.conf.settings.LINK_EXPIRATION,
+        # )
 
-        token_context = {
-            "username": user.username,
-            "exp": exp_timestamp,
-        }
+        # exp_timestamp = int(expiration.timestamp())
 
-        token = jwt.encode(
-            token_context,
-            django.conf.settings.SECRET_KEY,
-            algorithm="HS256",
-        )
+        # token_context = {
+        #     "username": user.username,
+        #     "exp": exp_timestamp,
+        # }
+
+        # token = jwt.encode(
+        #     token_context,
+        #     django.conf.settings.SECRET_KEY,
+        #     algorithm="HS256",
+        # )
 
         # activation_link = self.request.build_absolute_uri(
         #     django.urls.reverse(
@@ -61,7 +58,7 @@ class SignupFormView(django.views.generic.FormView):
         #     f"{activation_link}\n"
         #     "В противном случае возможности аккаунта будут ограничены."
         # )
-        
+
         # django.core.mail.send_mail(
         #     "Активация аккунта PROTester",
         #     msg_text,

@@ -25,7 +25,9 @@ class QuestionViewSet(rest_framework.viewsets.ModelViewSet):
     def get_queryset(self):
         test_id = self.request.query_params.get("test_id")
         if test_id:
-            return user_tests.models.Question.objects.filter_by_test_id(test_id)
+            return user_tests.models.Question.objects.filter_by_test_id(
+                test_id,
+            )
         return user_tests.models.Question.objects.all()
 
 
@@ -36,12 +38,9 @@ class QuestionAnswerViewSet(rest_framework.viewsets.ModelViewSet):
     def get_queryset(self):
         user_id = self.request.query_params.get("user_id")
         test_id = self.request.query_params.get("test_id")
-        return (
-            user_tests.models.QuestionAnswer.objects
-            .filter_by_test_id_or_user_id(
-                test_id=test_id,
-                user_id=user_id
-            )
+        return user_tests.models.QuestionAnswer.objects.filter_by_tid_or_uid(
+            test_id=test_id,
+            user_id=user_id,
         )
 
 

@@ -24,7 +24,7 @@ urlpatterns = [
     django.urls.path(
         "",
         django.urls.include("homepage.urls"),
-    ),   
+    ),
 ]
 
 urlpatterns += django.conf.urls.static.static(

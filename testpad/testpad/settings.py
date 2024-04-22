@@ -36,12 +36,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "api.apps.ApiConfig",
     "users.apps.UsersConfig",
     "homepage.apps.HomepageConfig",
     "user_tests.apps.UserTestsConfig",
-
     "drf_yasg",
     "sorl.thumbnail",
     "django_cleanup.apps.CleanupConfig",
@@ -129,8 +127,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
     BASE_DIR / "static_dev",
 ]

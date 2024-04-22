@@ -32,4 +32,3 @@ class SignUpForm(django.contrib.auth.forms.UserCreationForm):
             users.models.CustomUser.gender.field.name,
             users.models.CustomUser.birthday.field.name,
         ]
-
