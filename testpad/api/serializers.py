@@ -87,3 +87,9 @@ class TestSerializer(rest_framework.serializers.ModelSerializer):
     class Meta:
         model = user_tests.models.Test
         fields = "__all__"
+
+
+class TestResultSerializer(rest_framework.serializers.ModelSerializer):
+    class Meta:
+        model = user_tests.models.TestResult
+        fields = "__all__"

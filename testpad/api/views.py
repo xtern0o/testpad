@@ -57,3 +57,16 @@ class TestViewSet(rest_framework.viewsets.ReadOnlyModelViewSet):
 class UserViewSet(rest_framework.viewsets.ReadOnlyModelViewSet):
     queryset = users.models.CustomUser.objects.all()
     serializer_class = api.serializers.CustomUserDetailSerializer
+
+
+class TestResultViewSet(rest_framework.viewsets.ModelViewSet):
+    queryset = user_tests.models.TestResult.objects.all()
+    serializer_class = api.serializers.TestResultSerializer
+
+    def get_queryset(self):
+        user_id = self.request.query_params.get("user_id")
+        test_id = self.request.query_params.get("test_id")
+        return user_tests.models.TestResult.objects.filter_by_tid_or_uid(
+            test_id=test_id,
+            user_id=user_id,
+        )

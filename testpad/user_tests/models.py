@@ -259,14 +259,12 @@ class TestResult(django.db.models.Model):
         to=django.conf.settings.AUTH_USER_MODEL,
         on_delete=django.db.models.deletion.CASCADE,
         verbose_name="пользователь",
-        related_name="user",
     )
 
     test = django.db.models.ForeignKey(
         to=Test,
         verbose_name="тест",
         on_delete=django.db.models.deletion.CASCADE,
-        related_name="test",
     )
 
     result = django.db.models.PositiveIntegerField(
