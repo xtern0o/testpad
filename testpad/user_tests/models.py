@@ -1,11 +1,16 @@
 import django.conf
+import django.contrib
+import django.contrib.auth
+import django.core.exceptions
 import django.core.validators
 import django.db.models
+import django.http
 import django.utils.timezone
 import sorl.thumbnail
 
 import core.models
 import user_tests.managers
+import users.models
 
 
 class Category(django.db.models.Model):
@@ -245,3 +250,75 @@ class QuestionImage(core.models.AbstractImage):
     class Meta:
         verbose_name = "картинка"
         verbose_name_plural = "картинки"
+
+
+class TestResult(django.db.models.Model):
+    objects = user_tests.managers.TestResultManager()
+
+    user = django.db.models.ForeignKey(
+        to=django.conf.settings.AUTH_USER_MODEL,
+        on_delete=django.db.models.deletion.CASCADE,
+        verbose_name="пользователь",
+        related_name="user",
+    )
+
+    test = django.db.models.ForeignKey(
+        to=Test,
+        verbose_name="тест",
+        on_delete=django.db.models.deletion.CASCADE,
+        related_name="test",
+    )
+
+    result = django.db.models.PositiveIntegerField(
+        verbose_name="результат",
+        default=0,
+        help_text="сколько баллов пользователь набрал в этом тексте",
+    )
+
+    def set_result(self, user_id, test_id):
+        try:
+            weight_sum = (
+                QuestionAnswer.objects.filter_by_tid_or_uid(test_id, user_id)
+                .filter(is_correct=True)
+                .aggregate(
+                    total_sum=django.db.models.Sum("question__weight"),
+                )["total_sum"]
+            )
+            TestResult.objects.create(
+                test=Test.objects.get(id=test_id),
+                user=users.models.CustomUser.get(id=user_id),
+                result=weight_sum,
+            )
+
+            return django.http.JsonResponse(
+                {
+                    "status": 200,
+                    "info": {
+                        "value": weight_sum,
+                    },
+                },
+            )
+
+        except django.core.exceptions.ObjectDoesNotExist:
+            return django.http.JsonResponse(
+                {
+                    "status": 404,
+                    "info": {
+                        "value": "Объект Test или User не существует",
+                    },
+                },
+            )
+
+        except Exception:
+            return django.http.JsonResponse(
+                {
+                    "status": 404,
+                    "info": {
+                        "value": "Какая-то ошибка",
+                    },
+                },
+            )
+
+    class Meta:
+        verbose_name = "результат теста"
+        verbose_name_plural = "результаты тестов"

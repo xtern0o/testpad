@@ -29,3 +29,17 @@ class QuestionAnswerManager(django.db.models.Manager):
         if user_id:
             return self.get_queryset().filter(user__id=user_id)
         return self.get_queryset()
+
+
+class TestResultManager(django.db.models.Manager):
+    def filter_by_tid_or_uid(self, test_id=None, user_id=None):
+        if test_id and user_id:
+            return self.get_queryset().filter(
+                test__id=test_id,
+                user__id=user_id,
+            )
+        if test_id:
+            return self.get_queryset().filter(question__test__id=test_id)
+        if user_id:
+            return self.get_queryset().filter(user__id=user_id)
+        return self.get_queryset()
