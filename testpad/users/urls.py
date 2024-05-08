@@ -7,11 +7,11 @@ import users.views
 app_name = "users"
 
 urlpatterns = [
-    # django.urls.path(
-    #     "activate/<str:token>/",
-    #     users.views.ActivateUserView.as_view(),
-    #     name="activate",
-    # ),
+    django.urls.path(
+        "activate/<str:token>/",
+        users.views.ActivateUserView.as_view(),
+        name="activate",
+    ),
     # django.urls.path(
     #     "profile/",
     #     users.views.profile,
